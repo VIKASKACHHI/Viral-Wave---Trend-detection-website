@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: "Poppins", Helvetica;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.cover, 
+.cover .group,
+.cover .text {
+  position: absolute;
+  width: 100%; /* Adjust as needed */
+}
+
+
+.cover .group {
+  height: 166px;
+  top: 386px;
+}
+
+
+
+.cover .search-with-seamless {
+  position: absolute;
+  width: 100%;
+  top: -100px;
+  left: 0;
+  font-family: "Poppins", Helvetica;
+  color: transparent;
+  font-size: 55px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 82.7px;
+}
+
+.cover .text-wrapper {
+  color: #ffffff;
+}
+
+.cover .span {
+  color: #de55de;
+}
+
+.cover {
+  position: relative;
+  text-align: center;
+  height: 100vh;
+}
+
+
+
+.search-button,
+.search-button1 {
+  margin-top: 5px;
+  padding: 15px 35px;
+  background-color: #000000; /* Note: Corrected color format */
+  color: #ffffff;
+  font-weight: bolder;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.search-button1 {
+  margin-top: 30px;
+  margin-left: 3px; /* Adjust the margin as needed */
+}

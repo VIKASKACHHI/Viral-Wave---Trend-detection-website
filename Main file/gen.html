@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #keywords {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+  <title>Trending Keyword Generator</title>
+</head>
+<body>
+
+<h1>Trending Keyword Generator</h1>
+
+<button onclick="openInstagramReels()">Instagram Reels</button>
+
+<div id="keywords"></div>
+
+<script>
+  function openInstagramReels() {
+    window.open('instadata.html', '_blank');
+  }
+</script>
+
+</body>
+</html>

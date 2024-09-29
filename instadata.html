@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trends Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>List of Trending reel song</h1>
+
+    <!-- The container where the trends will be displayed -->
+    <table id="trendsTable">
+        <thead>
+            <!-- Table header will be populated dynamically based on the first row of data -->
+        </thead>
+        <tbody>
+            <!-- Table body will be populated dynamically based on the rest of the rows -->
+        </tbody>
+    </table>
+
+    <!-- Script to fetch trends from Google Sheets API -->
+    <script>
+        const apiKey = 'AIzaSyBmvdYZA_u4SBUuwedc25tOlTMyvnIg8Mo';
+        const sheetId = '1gqXKu5i6tLaKKaEKZW-E4O7dQ4HUVo5iaReW6I_54sM';
+        const sheetName = 'Sheet2'; // Replace with the actual sheet name
+
+        // Construct the URL for fetching data from the Google Sheets API
+        const sheetsApiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?key=${apiKey}`;
+
+        // Fetch data from Google Sheets API
+        fetch(sheetsApiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const trendsTable = document.getElementById('trendsTable');
+                const trendsHead = trendsTable.querySelector('thead');
+                const trendsBody = trendsTable.querySelector('tbody');
+
+                // Assuming the data structure is in the 'values' property of the response
+                const trends = data.values || [];
+
+                // Populate table header dynamically based on the first row
+                const headerRow = trends.shift();
+                const headerHtml = headerRow.map(column => `<th>${column}</th>`).join('');
+                trendsHead.innerHTML = `<tr>${headerHtml}</tr>`;
+
+                // Populate table body dynamically based on the rest of the rows
+                trends.forEach(row => {
+                    const rowHtml = row.map(column => `<td>${column}</td>`).join('');
+                    trendsBody.innerHTML += `<tr>${rowHtml}</tr>`;
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching trends:', error);
+            });
+    </script>
+
+</body>
+</html>
